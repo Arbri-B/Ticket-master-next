@@ -2,6 +2,9 @@ import Link from 'next/link'
 import React from 'react'
 
 async function getTickets() {
+
+    await new Promise(resolve => setTimeout(resolve, 3000))
+
     const response = await fetch('http://localhost:4000/tickets', {
         next: {
             revalidate: 0 //never chache
@@ -11,7 +14,7 @@ async function getTickets() {
     return response.json()
 }
 
-export default async function TicketList() {
+export default async function TicketList() {    
 
     const tickets = await getTickets()
 
